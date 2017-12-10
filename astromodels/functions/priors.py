@@ -11,7 +11,7 @@ deg2rad = np.pi/180.
 rad2deg = 180./np.pi
 
 # noinspection PyPep8Naming
-class Gaussian(Function1D):
+class Gaussian(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -42,8 +42,6 @@ class Gaussian(Function1D):
         - { x : -1.0, function value: 0.24197072451914337, tolerance: 1e-9}
 
     """
-
-    __metaclass__ = FunctionMeta
 
     # Place this here to avoid recomputing it all the time
 
@@ -97,7 +95,7 @@ class Gaussian(Function1D):
 
         return res
 
-class Truncated_gaussian(Function1D):
+class Truncated_gaussian(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -139,8 +137,6 @@ class Truncated_gaussian(Function1D):
         - { x : -1.0, function value: 0.24197072451914337, tolerance: 1e-9}
 
     """
-
-    __metaclass__ = FunctionMeta
 
     # Place this here to avoid recomputing it all the time
 
@@ -239,7 +235,7 @@ class Truncated_gaussian(Function1D):
 
         return mu + sigma * sqrt_two * erfcinv(2 * (1 - arg))
 
-class Cauchy(Function1D):
+class Cauchy(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -270,8 +266,6 @@ class Cauchy(Function1D):
         - { x : -1.0, function value: 0.24197072451914337, tolerance: 1e-9}
 
     """
-
-    __metaclass__ = FunctionMeta
 
     # Place this here to avoid recomputing it all the time
 
@@ -319,7 +313,7 @@ class Cauchy(Function1D):
         return res
 
 
-class Cosine_Prior(Function1D):
+class Cosine_Prior(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -352,8 +346,6 @@ class Cosine_Prior(Function1D):
 
 
     """
-
-    __metaclass__ = FunctionMeta
 
 
     def _setup(self):
@@ -426,7 +418,7 @@ class Cosine_Prior(Function1D):
         return dec
 
 
-class Log_normal(Function1D):
+class Log_normal(Function1D, metaclass=FunctionMeta):
     r"""
        description :
 
@@ -457,8 +449,6 @@ class Log_normal(Function1D):
            - { x : -1.0, function value: 0.24197072451914337, tolerance: 1e-9}
 
        """
-
-    __metaclass__ = FunctionMeta
 
 
     # Place this here to avoid recomputing it all the time
@@ -523,7 +513,7 @@ class Log_normal(Function1D):
         return np.exp(res)
 
 
-class Uniform_prior(Function1D):
+class Uniform_prior(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -558,8 +548,6 @@ class Uniform_prior(Function1D):
         - { x : -0.5, function value: 0, tolerance: 1e-20}
 
     """
-
-    __metaclass__ = FunctionMeta
 
     def _setup(self):
         self._is_prior = True
@@ -603,7 +591,7 @@ class Uniform_prior(Function1D):
 
         return par
 
-class Log_uniform_prior(Function1D):
+class Log_uniform_prior(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -635,8 +623,6 @@ class Log_uniform_prior(Function1D):
             fix : yes
 
     """
-
-    __metaclass__ = FunctionMeta
 
     def _setup(self):
 

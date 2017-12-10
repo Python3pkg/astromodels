@@ -540,7 +540,7 @@ def xspec_model_factory(model_name, xspec_function, model_type, definition):
 
     else:
 
-        print("Generating code for Xspec model %s..." % model_name)
+        print(("Generating code for Xspec model %s..." % model_name))
 
         # If this is an additive model (model_type == 'add') we need to add
         # one more parameter (normalization)
@@ -559,7 +559,7 @@ def xspec_model_factory(model_name, xspec_function, model_type, definition):
         assert model_type != 'con', "Convolution models are not yet supported"
 
         # Get a list of the parameter names
-        parameters_names = ", ".join(definition['parameters'].keys())
+        parameters_names = ", ".join(list(definition['parameters'].keys()))
 
         # Create the docstring
         docstring = my_yaml.dump(definition, default_flow_style=False)

@@ -54,7 +54,7 @@ def memoize(method):
 
         # Create a tuple because a tuple is hashable
 
-        unique_id = tuple(float(yy.value) for yy in instance.parameters.values()) + (x.size, x.min(), x.max())
+        unique_id = tuple(float(yy.value) for yy in list(instance.parameters.values())) + (x.size, x.min(), x.max())
 
         # If the input has units, use the units as well
         if isinstance(x, u.Quantity):

@@ -148,7 +148,7 @@ def test_remove_child():
         t._remove_child("node")
 
     with pytest.raises(AttributeError):
-        print t.node
+        print(t.node)
 
     with pytest.raises(AttributeError):
         t._get_child("node")
@@ -166,7 +166,7 @@ def test_get_path():
     node1._add_child(node2)
     node2._add_child(node3)
 
-    print node3.path
+    print(node3.path)
 
     assert node3.path == "node1.node2.node3"
 
@@ -240,7 +240,7 @@ def test_pickle():
     assert root2.node.path == 'root.node'
     assert root2.node.name == 'node'
 
-    print root.placeholder
+    print(root.placeholder)
 
     assert root2.placeholder == root.placeholder
 
@@ -253,7 +253,7 @@ def test_pickle():
 
     root2c = pickle.loads(d)
 
-    print root2c.min_value
+    print(root2c.min_value)
 
     clean()
 
@@ -398,7 +398,7 @@ def test_memory_leaks_destructors():
 
     for i in range(1000):
 
-        print("\n\nRound %i" % (i+1))
+        print(("\n\nRound %i" % (i+1)))
 
         # Test destructors
         root = Node("root")

@@ -201,7 +201,7 @@ class Model(Node):
 
         free_parameters_dictionary = collections.OrderedDict()
 
-        for parameter_name, parameter in self._parameters.iteritems():
+        for parameter_name, parameter in self._parameters.items():
 
             if parameter.free:
 
@@ -227,7 +227,7 @@ class Model(Node):
 
         linked_parameter_dictionary = collections.OrderedDict()
 
-        for parameter_name, parameter in self._parameters.iteritems():
+        for parameter_name, parameter in self._parameters.items():
 
             if parameter.has_auxiliary_variable():
 
@@ -247,7 +247,7 @@ class Model(Node):
 
         assert len(values) == len(self.free_parameters)
 
-        for parameter, this_value in zip(self.free_parameters.values(), values):
+        for parameter, this_value in zip(list(self.free_parameters.values()), values):
 
             parameter.value = this_value
 
@@ -538,7 +538,7 @@ class Model(Node):
 
             parameter_dict = collections.OrderedDict()
 
-            for parameter_name, parameter in free_parameters.iteritems():
+            for parameter_name, parameter in free_parameters.items():
                 # Generate table with only a minimal set of info
 
                 # Generate table with only a minimal set of info
@@ -572,7 +572,7 @@ class Model(Node):
 
             fixed_parameter_dict = collections.OrderedDict()
 
-            for parameter_name, parameter in parameters.iteritems():
+            for parameter_name, parameter in parameters.items():
 
                 if parameter.free or parameter_name in linked_parameters:
 
@@ -611,7 +611,7 @@ class Model(Node):
 
         if linked_parameters:
 
-            for parameter_name, parameter in linked_parameters.iteritems():
+            for parameter_name, parameter in linked_parameters.items():
 
                 parameter_dict = collections.OrderedDict()
 
@@ -646,7 +646,7 @@ class Model(Node):
 
         if self._independent_variables:
 
-            for variable_name, variable_instance in self._independent_variables.iteritems():
+            for variable_name, variable_instance in self._independent_variables.items():
 
                 v_dict = collections.OrderedDict()
 
@@ -858,7 +858,7 @@ class Model(Node):
 
         # Add the types to the sources
 
-        for key in data.keys():
+        for key in list(data.keys()):
 
             try:
 
@@ -942,7 +942,7 @@ class Model(Node):
         :return: a tuple with R.A. and Dec.
         """
 
-        pts = self._point_sources.values()[id]
+        pts = list(self._point_sources.values())[id]
 
         return pts.position.get_ra(), pts.position.get_dec()
 
@@ -960,11 +960,11 @@ class Model(Node):
         :return: fluxes
         """
 
-        return self._point_sources.values()[id](energies, tag=tag)
+        return list(self._point_sources.values())[id](energies, tag=tag)
 
     def get_point_source_name(self, id):
 
-        return self._point_sources.values()[id].name
+        return list(self._point_sources.values())[id].name
 
     def get_number_of_extended_sources(self):
         """
@@ -985,7 +985,7 @@ class Model(Node):
         :return: flux array
         """
 
-        return self._extended_sources.values()[id](j2000_ra, j2000_dec, energies)
+        return list(self._extended_sources.values())[id](j2000_ra, j2000_dec, energies)
 
     def get_extended_source_name(self, id):
         """
@@ -995,17 +995,17 @@ class Model(Node):
         :return: the name of the id-th source
         """
 
-        return self._extended_sources.values()[id].name
+        return list(self._extended_sources.values())[id].name
 
     def get_extended_source_boundaries(self, id):
 
-        (ra_min, ra_max), (dec_min, dec_max) = self._extended_sources.values()[id].get_boundaries()
+        (ra_min, ra_max), (dec_min, dec_max) = list(self._extended_sources.values())[id].get_boundaries()
 
         return ra_min, ra_max, dec_min, dec_max
 
     def is_inside_any_extended_source(self, j2000_ra, j2000_dec):
 
-        for ext_source in self.extended_sources.values():
+        for ext_source in list(self.extended_sources.values()):
 
             (ra_min, ra_max), (dec_min, dec_max) = ext_source.get_boundaries()
 
@@ -1041,11 +1041,11 @@ class Model(Node):
         :return: fluxes
         """
 
-        return self._particle_sources.values()[id](energies)
+        return list(self._particle_sources.values())[id](energies)
 
     def get_particle_source_name(self, id):
 
-        return self._particle_sources.values()[id].name
+        return list(self._particle_sources.values())[id].name
 
     def get_total_flux(self, energies):
         """

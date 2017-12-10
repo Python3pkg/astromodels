@@ -92,7 +92,7 @@ else:
 
 
 # noinspection PyPep8Naming
-class Powerlaw_lognorm(Function1D):
+class Powerlaw_lognorm(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -124,8 +124,6 @@ class Powerlaw_lognorm(Function1D):
 
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
 
         warnings.warn("The Powerlaw_lognorm function is deprecated. Use the normal Powerlaw function which "
@@ -149,7 +147,7 @@ class Powerlaw_lognorm(Function1D):
         return K * np.power(xx, index)
 
 
-class Powerlaw(Function1D):
+class Powerlaw(Function1D, metaclass=FunctionMeta):
         r"""
         description :
 
@@ -188,8 +186,6 @@ class Powerlaw(Function1D):
 
         """
 
-        __metaclass__ = FunctionMeta
-
         def _set_units(self, x_unit, y_unit):
             # The index is always dimensionless
             self.index.unit = astropy_units.dimensionless_unscaled
@@ -210,7 +206,7 @@ class Powerlaw(Function1D):
 
 
 # noinspection PyPep8Naming
-class Powerlaw_flux(Function1D):
+class Powerlaw_flux(Function1D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -252,8 +248,6 @@ class Powerlaw_flux(Function1D):
 
         """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # The flux is the integral over x, so:
         self.F.unit = y_unit * x_unit
@@ -273,7 +267,7 @@ class Powerlaw_flux(Function1D):
         return F * gp1 / (b ** gp1 - a ** gp1) * np.power(x, index)
 
 
-class Cutoff_powerlaw(Function1D):
+class Cutoff_powerlaw(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -314,8 +308,6 @@ class Cutoff_powerlaw(Function1D):
 
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # The index is always dimensionless
         self.index.unit = astropy_units.dimensionless_unscaled
@@ -338,7 +330,7 @@ class Cutoff_powerlaw(Function1D):
         return K * np.exp(log_v)
 
 
-class Super_cutoff_powerlaw(Function1D):
+class Super_cutoff_powerlaw(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -382,8 +374,6 @@ class Super_cutoff_powerlaw(Function1D):
 
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # The index is always dimensionless
         self.index.unit = astropy_units.dimensionless_unscaled
@@ -405,7 +395,7 @@ class Super_cutoff_powerlaw(Function1D):
 
 
 
-class SmoothlyBrokenPowerLaw(Function1D):
+class SmoothlyBrokenPowerLaw(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -461,8 +451,6 @@ class SmoothlyBrokenPowerLaw(Function1D):
 
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
 
         # norm has same unit as energy
@@ -508,7 +496,7 @@ class SmoothlyBrokenPowerLaw(Function1D):
         return K * (x / pivot) ** B * 10. ** (pcosh - pcosh_piv)
 
 
-class Broken_powerlaw(Function1D):
+class Broken_powerlaw(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -552,8 +540,6 @@ class Broken_powerlaw(Function1D):
 
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # The normalization has the same units as y
         self.K.unit = y_unit
@@ -582,7 +568,7 @@ class Broken_powerlaw(Function1D):
         return result
 
 
-class StepFunction(Function1D):
+class StepFunction(Function1D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -618,8 +604,6 @@ class StepFunction(Function1D):
 
         """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # Lower and upper bound has the same unit as x
         self.lower_bound.unit = x_unit
@@ -640,7 +624,7 @@ class StepFunction(Function1D):
 
 
 
-class StepFunctionUpper(Function1D):
+class StepFunctionUpper(Function1D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -678,8 +662,6 @@ class StepFunctionUpper(Function1D):
 
         """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # Lower and upper bound has the same unit as x
         self.lower_bound.unit = x_unit
@@ -701,7 +683,7 @@ class StepFunctionUpper(Function1D):
 
 
 # noinspection PyPep8Naming
-class Blackbody(Function1D):
+class Blackbody(Function1D, metaclass=FunctionMeta):
     r"""
 
     description :
@@ -721,8 +703,6 @@ class Blackbody(Function1D):
             initial value : 30.0
             min: 0.
     """
-
-    __metaclass__ = FunctionMeta
 
     def _set_units(self, x_unit, y_unit):
         # The normalization has the same units as y
@@ -750,7 +730,7 @@ class Blackbody(Function1D):
 
 
 # noinspection PyPep8Naming
-class Sin(Function1D):
+class Sin(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -786,8 +766,6 @@ class Sin(Function1D):
 
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # The normalization has the same unit of y
         self.K.unit = y_unit
@@ -807,7 +785,7 @@ class Sin(Function1D):
 
 
 
-class Line(Function1D):
+class Line(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -829,8 +807,6 @@ class Line(Function1D):
 
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # a has units of y_unit / x_unit, so that a*x has units of y_unit
         self.a.unit = y_unit / x_unit
@@ -841,7 +817,7 @@ class Line(Function1D):
     def evaluate(self, x, a, b):
         return a * x + b
 
-class Constant(Function1D):
+class Constant(Function1D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -858,8 +834,6 @@ class Constant(Function1D):
 
         """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         self.k.unit = y_unit
 
@@ -867,7 +841,7 @@ class Constant(Function1D):
         return k
 
 
-class DiracDelta(Function1D):
+class DiracDelta(Function1D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -891,8 +865,6 @@ class DiracDelta(Function1D):
 
         """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
 
         self.value.unit = y_unit
@@ -911,7 +883,7 @@ class DiracDelta(Function1D):
 
 if has_naima:
 
-    class Synchrotron(Function1D):
+    class Synchrotron(Function1D, metaclass=FunctionMeta):
         r"""
         description :
             Synchrotron spectrum from an input particle distribution, using Naima (naima.readthedocs.org)
@@ -942,8 +914,6 @@ if has_naima:
                 max : 100
                 fix : yes
         """
-
-        __metaclass__ = FunctionMeta
 
         def _set_units(self, x_unit, y_unit):
 
@@ -1011,7 +981,7 @@ if has_naima:
             return data
 
 
-class _ComplexTestFunction(Function1D):
+class _ComplexTestFunction(Function1D, metaclass=FunctionMeta):
     r"""
     description :
         A useless function to be used during automatic tests
@@ -1032,8 +1002,6 @@ class _ComplexTestFunction(Function1D):
             max : 100
             delta : 0.1
     """
-
-    __metaclass__ = FunctionMeta
 
     def _set_units(self, x_unit, y_unit):
 
@@ -1069,7 +1037,7 @@ class _ComplexTestFunction(Function1D):
         return data
 
 
-class Band(Function1D):
+class Band(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -1112,8 +1080,6 @@ class Band(Function1D):
             fix : yes
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # The normalization has the same units as y
         self.K.unit = y_unit
@@ -1146,7 +1112,7 @@ class Band(Function1D):
 
         return out
 
-class Band_grbm(Function1D):
+class Band_grbm(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -1189,8 +1155,6 @@ class Band_grbm(Function1D):
             fix : yes
     """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # The normalization has the same units as y
         self.K.unit = y_unit
@@ -1225,7 +1189,7 @@ class Band_grbm(Function1D):
 
 
 
-class Band_Calderone(Function1D):
+class Band_Calderone(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -1285,8 +1249,6 @@ class Band_Calderone(Function1D):
             fix : yes
 
     """
-
-    __metaclass__ = FunctionMeta
 
     def _set_units(self, x_unit, y_unit):
 
@@ -1422,7 +1384,7 @@ class Band_Calderone(Function1D):
         return flux
 
 
-class Log_parabola(Function1D):
+class Log_parabola(Function1D, metaclass=FunctionMeta):
     r"""
     description :
 
@@ -1459,8 +1421,6 @@ class Log_parabola(Function1D):
             initial value : 1.0
 
     """
-
-    __metaclass__ = FunctionMeta
 
     def _set_units(self, x_unit, y_unit):
 
@@ -1514,7 +1474,7 @@ class Log_parabola(Function1D):
 
 
 if has_gsl:
-    class Cutoff_powerlaw_flux(Function1D):
+    class Cutoff_powerlaw_flux(Function1D, metaclass=FunctionMeta):
         r"""
             description :
 
@@ -1554,8 +1514,6 @@ if has_gsl:
                     fix : yes
             """
 
-        __metaclass__ = FunctionMeta
-
         def _set_units(self, x_unit, y_unit):
             # K has units of y * x
             self.F.unit = y_unit * x_unit
@@ -1582,7 +1540,7 @@ if has_gsl:
             return F / this_integral * np.power(x, index) * np.exp(-1 * np.divide(x, xc))
 
 
-class Exponential_cutoff(Function1D):
+class Exponential_cutoff(Function1D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -1605,8 +1563,6 @@ class Exponential_cutoff(Function1D):
                 min : 1
         """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit):
         # K has units of y
 
@@ -1621,7 +1577,7 @@ class Exponential_cutoff(Function1D):
 
 if has_ebltable:
 
-    class EBLattenuation(Function1D):
+    class EBLattenuation(Function1D, metaclass=FunctionMeta):
         r"""
         description :
             Attenuation factor for absorption in the extragalactic background light (EBL) ,
@@ -1637,8 +1593,6 @@ if has_ebltable:
                 initial value : 1.0
                 fix : yes
         """
-
-        __metaclass__ = FunctionMeta
         
         def _setup(self):
 

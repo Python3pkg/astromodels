@@ -215,7 +215,7 @@ def test_call_with_units():
 
         if this_function._n_dim == 1:
 
-            print("testing %s ..." % key)
+            print(("testing %s ..." % key))
 
             test_one(_known_functions[key])
 
@@ -224,7 +224,7 @@ def test_call_with_composite_function_with_units():
 
     def one_test(spectrum):
 
-        print("Testing %s" % spectrum.expression)
+        print(("Testing %s" % spectrum.expression))
 
         # # if we have fixed x_units then we will use those
         # # in the test

@@ -10,7 +10,7 @@ from astromodels.utils.angular_distance import angular_distance
 from astromodels.utils.vincenty import vincenty
 
 
-class Latitude_galactic_diffuse(Function2D):
+class Latitude_galactic_diffuse(Function2D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -41,8 +41,6 @@ class Latitude_galactic_diffuse(Function2D):
                 initial value : 30
 
         """
-
-    __metaclass__ = FunctionMeta
 
     # This is optional, and it is only needed if we need more setup after the
     # constructor provided by the meta class
@@ -96,7 +94,7 @@ class Latitude_galactic_diffuse(Function2D):
         return (min_lon, max_lon), (min_lat, max_lat)
 
 
-class Gaussian_on_sphere(Function2D):
+class Gaussian_on_sphere(Function2D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -128,8 +126,6 @@ class Gaussian_on_sphere(Function2D):
                 max : 20
 
         """
-
-    __metaclass__ = FunctionMeta
 
     def _set_units(self, x_unit, y_unit, z_unit):
 
@@ -182,7 +178,7 @@ class Gaussian_on_sphere(Function2D):
         return (min_lon, max_lon), (min_lat, max_lat)
 
 
-class Disk_on_sphere(Function2D):
+class Disk_on_sphere(Function2D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -214,8 +210,6 @@ class Disk_on_sphere(Function2D):
                 max : 20
 
         """
-
-    __metaclass__ = FunctionMeta
 
     def _set_units(self, x_unit, y_unit, z_unit):
 
@@ -267,7 +261,7 @@ class Disk_on_sphere(Function2D):
         return (min_lon, max_lon), (min_lat, max_lat)
 
 
-class Ellipse_on_sphere(Function2D):
+class Ellipse_on_sphere(Function2D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -312,8 +306,6 @@ class Ellipse_on_sphere(Function2D):
                 min : -90.0
                 max : 90.0
         """
-
-    __metaclass__ = FunctionMeta
     
     lon1 = None
     lat1 = None
@@ -397,7 +389,7 @@ class Ellipse_on_sphere(Function2D):
         return (min_lon, max_lon), (min_lat, max_lat)
 
 
-class SpatialTemplate_2D(Function2D):
+class SpatialTemplate_2D(Function2D, metaclass=FunctionMeta):
     r"""
         description :
         
@@ -414,8 +406,6 @@ class SpatialTemplate_2D(Function2D):
                 fix : yes
         
         """
-    
-    __metaclass__ = FunctionMeta
     
     def _set_units(self, x_unit, y_unit, z_unit):
         
@@ -492,7 +482,7 @@ class SpatialTemplate_2D(Function2D):
         
         return (min_lon, max_lon), (min_lat, max_lat)
 
-class Power_law_on_sphere(Function2D):
+class Power_law_on_sphere(Function2D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -530,8 +520,6 @@ class Power_law_on_sphere(Function2D):
                 fix : yes
 
         """
-
-    __metaclass__ = FunctionMeta
 
     def _set_units(self, x_unit, y_unit, z_unit):
 

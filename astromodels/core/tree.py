@@ -1,5 +1,5 @@
 import collections
-import cPickle
+import pickle
 
 from astromodels.utils.io import display
 from astromodels.core.node_ctype import _Node
@@ -73,7 +73,7 @@ class Node(_Node):
     # This is necessary for copy.deepcopy to work
     def __deepcopy__(self, memodict={}):
 
-        return cPickle.loads(cPickle.dumps(self))
+        return pickle.loads(pickle.dumps(self))
 
     #########################################################################
 
@@ -81,7 +81,7 @@ class Node(_Node):
     def __dir__(self):
 
         # Get the names of the attributes of the class
-        l = self.__class__.__dict__.keys()
+        l = list(self.__class__.__dict__.keys())
 
         # Get all the children
         l.extend([child.name for child in self._get_children()])
@@ -257,7 +257,7 @@ class OldNode(object):
 
         this_dict = collections.OrderedDict()
 
-        for key, val in self._children.iteritems():
+        for key, val in self._children.items():
 
             this_dict[key] = val.to_dict(minimal)
 
@@ -305,7 +305,7 @@ class OldNode(object):
 
         instances = collections.OrderedDict()
 
-        for child_name, child in self._children.iteritems():
+        for child_name, child in self._children.items():
 
             if isinstance(child, cls):
 

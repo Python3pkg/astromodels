@@ -8,7 +8,7 @@ from astromodels.utils.angular_distance import angular_distance
 
 
 
-class Continuous_injection_diffusion_ellipse(Function3D):
+class Continuous_injection_diffusion_ellipse(Function3D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -86,8 +86,6 @@ class Continuous_injection_diffusion_ellipse(Function3D):
 
         """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit, z_unit, w_unit):
 
         # lon0 and lat0 and rdiff have most probably all units of degrees. However,
@@ -135,9 +133,8 @@ class Continuous_injection_diffusion_ellipse(Function3D):
 
             # Work around the problem with this loop, which is slow but using units is only for testing purposes or
             # single calls, so it shouldn't matter too much
-            rdiff_a = np.array( map(lambda x: (rdiff0 * np.power(e_energy_pivi2 / e_piv_piv2, x)).value,
-                                  (delta - 1.) / 2. * np.sqrt(b * b / 8. / np.pi * 0.624 + 0.26 * np.power(1. + 0.0107 * e_piv_piv2, -1.5)) /
-                                  np.sqrt(b * b / 8. / np.pi * 0.624 + 0.26 * np.power(1. + 0.0107 * e_energy_piv2, -1.5)))) * rdiff0.unit
+            rdiff_a = np.array( [(rdiff0 * np.power(e_energy_pivi2 / e_piv_piv2, x)).value for x in (delta - 1.) / 2. * np.sqrt(b * b / 8. / np.pi * 0.624 + 0.26 * np.power(1. + 0.0107 * e_piv_piv2, -1.5)) /
+                                  np.sqrt(b * b / 8. / np.pi * 0.624 + 0.26 * np.power(1. + 0.0107 * e_energy_piv2, -1.5))]) * rdiff0.unit
 
         rdiff_b = rdiff_a * elongation
 
@@ -190,7 +187,7 @@ class Continuous_injection_diffusion_ellipse(Function3D):
 
         return (min_longitude, max_longitude), (min_latitude, max_latitude)
 
-class Continuous_injection_diffusion(Function3D):
+class Continuous_injection_diffusion(Function3D, metaclass=FunctionMeta):
     r"""
         description :
 
@@ -260,8 +257,6 @@ class Continuous_injection_diffusion(Function3D):
 
         """
 
-    __metaclass__ = FunctionMeta
-
     def _set_units(self, x_unit, y_unit, z_unit, w_unit):
 
         # lon0 and lat0 and rdiff have most probably all units of degrees. However,
@@ -310,11 +305,11 @@ class Continuous_injection_diffusion(Function3D):
 
             # Work around the problem with this loop, which is slow but using units is only for testing purposes or
             # single calls, so it shouldn't matter too much
-            rdiff_c = np.array( map(lambda x: (rdiff0 * np.power(e_energy_pivi2 / e_piv_piv2, x)
+            rdiff_c = np.array( list(map(lambda x: (rdiff0 * np.power(e_energy_pivi2 / e_piv_piv2, x)
                                    * np.sqrt(b * b / 8. / np.pi * 0.624 + 0.26 * np.power(1. + 0.0107 * e_piv_piv2, -1.5)) /
-                                  np.sqrt(b * b / 8. / np.pi * 0.624 + 0.26 * np.power(1. + 0.0107 * e_energy_piv2, -1.5)), (delta - 1.) / 2.).value)) * rdiff0.unit
+                                  np.sqrt(b * b / 8. / np.pi * 0.624 + 0.26 * np.power(1. + 0.0107 * e_energy_piv2, -1.5)), (delta - 1.) / 2.).value))) * rdiff0.unit
 
-            rdiff_i = np.array( map(lambda x: (rdiff0 * rinj * np.power(e_energy_piv2 / e_piv_piv2, x), delta / 2.).value)) * rdiff0.unit
+            rdiff_i = np.array( list(map(lambda x: (rdiff0 * rinj * np.power(e_energy_piv2 / e_piv_piv2, x), delta / 2.).value))) * rdiff0.unit
             raise ValueError("")
 
         rdiff = np.minimum(rdiff_c, rdiff_i)

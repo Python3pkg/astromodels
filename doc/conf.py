@@ -76,9 +76,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Astromodels'
-copyright = u'2016, Giacomo Vianello (giacomov@stanford.edu)'
-author = u'Giacomo Vianello (giacomov@stanford.edu)'
+project = 'Astromodels'
+copyright = '2016, Giacomo Vianello (giacomov@stanford.edu)'
+author = 'Giacomo Vianello (giacomov@stanford.edu)'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -252,8 +252,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'Astromodels.tex', u'Astromodels Documentation',
-   u'Giacomo Vianello (giacomov@stanford.edu)', 'manual'),
+  (master_doc, 'Astromodels.tex', 'Astromodels Documentation',
+   'Giacomo Vianello (giacomov@stanford.edu)', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -282,7 +282,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'astromodels', u'Astromodels Documentation',
+    (master_doc, 'astromodels', 'Astromodels Documentation',
      [author], 1)
 ]
 
@@ -296,7 +296,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'Astromodels', u'Astromodels Documentation',
+  (master_doc, 'Astromodels', 'Astromodels Documentation',
    author, 'Astromodels', 'One line description of project.',
    'Miscellaneous'),
 ]

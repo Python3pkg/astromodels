@@ -101,7 +101,7 @@ class ModelParser(object):
         self._links = []
         self._extra_setups = []
 
-        for source_or_var_name, source_or_var_definition in self._model_dict.iteritems():
+        for source_or_var_name, source_or_var_definition in self._model_dict.items():
 
             if source_or_var_name.find("(IndependentVariable)") > 0:
 
@@ -176,7 +176,7 @@ class ModelParser(object):
 
             path = extra_setup['function_path']
 
-            for property, value in extra_setup['extra_setup'].iteritems():
+            for property, value in extra_setup['extra_setup'].items():
 
                 new_model[path].__setattr__(property, new_model[value])
 
@@ -206,7 +206,7 @@ class ParameterParser(object):
 
             try:
 
-                function_name = definition['prior'].keys()[0]
+                function_name = list(definition['prior'].keys())[0]
                 parameters_definition = definition['prior'][function_name]
 
             except KeyError:  # pragma: no cover
@@ -304,7 +304,7 @@ class SourceParser(object):
 
         components = []
 
-        for component_name, component_definition in particle_source_definition['spectrum'].iteritems():
+        for component_name, component_definition in particle_source_definition['spectrum'].items():
 
             this_component = self._parse_spectral_component(component_name, component_definition)
 
@@ -340,7 +340,7 @@ class SourceParser(object):
 
         components = []
 
-        for component_name, component_definition in pts_source_definition['spectrum'].iteritems():
+        for component_name, component_definition in pts_source_definition['spectrum'].items():
 
             try:
 
@@ -432,7 +432,7 @@ class SourceParser(object):
 
         try:
 
-            function_name = component_definition.keys()[0]
+            function_name = list(component_definition.keys())[0]
             parameters_definition = component_definition[function_name]
 
         except KeyError: # pragma: no cover
@@ -460,11 +460,11 @@ class SourceParser(object):
     def _parse_extended_source(self, ext_source_definition):
 
         # The first item in the dictionary is the definition of the extended shape
-        name_of_spatial_shape = ext_source_definition.keys()[0]
+        name_of_spatial_shape = list(ext_source_definition.keys())[0]
 
         spatial_shape_parser = ShapeParser(self._source_name)
 
-        spatial_shape = spatial_shape_parser.parse("n.a.", name_of_spatial_shape, ext_source_definition.values()[0])
+        spatial_shape = spatial_shape_parser.parse("n.a.", name_of_spatial_shape, list(ext_source_definition.values())[0])
 
         # Parse the spectral information
 
@@ -478,7 +478,7 @@ class SourceParser(object):
 
         components = []
 
-        for component_name, component_definition in ext_source_definition['spectrum'].iteritems():
+        for component_name, component_definition in ext_source_definition['spectrum'].items():
             this_component = self._parse_spectral_component(component_name, component_definition)
 
             components.append(this_component)
@@ -540,7 +540,7 @@ class ShapeParser(object):
         # Loop over the parameters of the function instance, instead of the specification,
         # so we can understand if there are parameters missing from the specification
 
-        for parameter_name in function_instance.parameters.keys():
+        for parameter_name in list(function_instance.parameters.keys()):
 
             try:
 
@@ -607,7 +607,7 @@ class ShapeParser(object):
                                            % (parameter_name, function_name, component_name,
                                               self._source_name, linked_variable))
 
-                link_function_name = this_definition['law'].keys()[0]
+                link_function_name = list(this_definition['law'].keys())[0]
 
                 link_function_instance = self._parse_shape_definition(component_name, link_function_name,
                                                                       this_definition['law'][link_function_name])
@@ -632,7 +632,7 @@ class ShapeParser(object):
 
                 name_for_errors = 'prior for %s' % function_instance.parameters[parameter_name].path
 
-                prior_function_name = this_definition['prior'].keys()[0]
+                prior_function_name = list(this_definition['prior'].keys())[0]
 
                 prior_function_definition = this_definition['prior'][prior_function_name]
 

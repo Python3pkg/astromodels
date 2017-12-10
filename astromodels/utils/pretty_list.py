@@ -12,7 +12,7 @@ def _process_html(dictionary):
 
     output=[list_start]
 
-    for key,value in dictionary.iteritems():
+    for key,value in dictionary.items():
 
         if isinstance(value, dict):
 
@@ -21,7 +21,7 @@ def _process_html(dictionary):
 
                 continue
 
-            if len(value) > 1 or isinstance(value.values()[0], dict):
+            if len(value) > 1 or isinstance(list(value.values())[0], dict):
 
                 output.append(entry_start + str(key) + ': ')
                 output.append(_process_html(value))
@@ -29,7 +29,7 @@ def _process_html(dictionary):
 
             else:
 
-                output.append(entry_start + str(key) + ': ' + str(value.values()[0]) + entry_stop)
+                output.append(entry_start + str(key) + ': ' + str(list(value.values())[0]) + entry_stop)
 
         else:
 

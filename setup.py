@@ -173,7 +173,7 @@ def find_library(library_root, additional_places=None):
 
 
 # Get the version number
-execfile('astromodels/version.py')
+exec(compile(open('astromodels/version.py').read(), 'astromodels/version.py', 'exec'))
 
 
 def setup_xspec():
@@ -198,7 +198,7 @@ def setup_xspec():
                 # No, there is no library in Conda
                 print("No xspec-modelsonly package has been installed in Conda. Xspec support will not be installed")
 
-                print("Was looking into %s" % conda_lib_path)
+                print(("Was looking into %s" % conda_lib_path))
 
                 return None
 
@@ -237,7 +237,7 @@ def setup_xspec():
 
         else:
 
-            print("Found library %s in %s" % (this_library, this_library_path))
+            print(("Found library %s in %s" % (this_library, this_library_path)))
 
             libraries.append(this_library)
 

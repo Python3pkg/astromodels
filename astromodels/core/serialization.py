@@ -11,7 +11,7 @@ try:
 
 except ImportError:
 
-    import copy_reg as copyreg #py2
+    import copyreg as copyreg #py2
 
 
 # Model serializer
